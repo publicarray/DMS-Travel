@@ -1,0 +1,38 @@
+$nav-a-pad = 10px
+body
+    margin 0
+    font-family helvetica, arial, sans-serif
+    color #333
+nav
+    background #fff
+    background rgba(255, 255, 255, 0.9)
+    box-shadow 0 1px 3px rgba(0, 0, 0, 0.4)
+    font-size 1.2em
+    height 22px + $nav-a-pad*2
+    z-index 99
+    font-weight 300
+    ul
+        display block
+        text-align center
+        position fixed
+        top 0px
+        right 0px
+        left 0px
+        margin 0
+        padding 0
+        height 28px + $nav-a-pad*2
+        li
+            display inline-block
+            a
+                color #333
+                float left
+                display block
+                text-decoration none
+                padding $nav-a-pad
+                &:hover
+                    background #88f
+                    color #fff
+.fb-login-button
+    float right
+    padding ($nav-a-pad - 2) $nav-a-pad
+    margin 0 50px
