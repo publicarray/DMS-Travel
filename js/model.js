@@ -17,19 +17,17 @@ $(document).ready(function() {
 
 function loginCallback(){
     FB.getLoginStatus(function(response) {
-        console.log(response.status);
+        // console.log(response.status);
         $('#alertText').text(response.status);
+        $('.alert').fadeIn(2000);
         $('#splash').fadeIn(2000);
         $('#content').fadeOut(2000);
         if (response.status === 'connected') {
-            FB.api('/'+objectId, 'get', function(response) {
-                console.log(response);
-                console.log(response.cover.source);
-                console.log(response.description);
-            });
-            testAPI()
-            $('#splash').fadeOut(2000);
-            $('#content').fadeIn(2000);
+            $('#alertText').text('Connected');
+            displayPage();
+            $('.alert').delay(200).fadeOut(2000);
+            $('#splash').delay(200).fadeOut(2000);
+            $('#content').delay(1000).fadeIn(2000);
         } else {
             $('#alertText').text('Please Login');
             $('#alertBody').fadeIn(500);
@@ -42,6 +40,15 @@ function testAPI() {
       console.log('Successful login for: ' + response.name);
     });
   }
+
+function displayPage() {
+    FB.api('/'+objectId, 'get', function(response) {
+        $('.bg').css('background-image', 'url("'+response.cover.source+'")');
+        $('#description').text(response.description);
+        console.log(response);
+    });
+    testAPI();
+}
 
 // function getAvatarURL(id) {
 //     return 'https://graph.facebook.com/' + id + '/picture?type=square';
