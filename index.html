@@ -14,24 +14,24 @@
     </head>
     <body>
     <div id="fb-root"></div>
-    <script src="js/min/model-min.js"></script>
+    <div id="splash">
+        <div class="alert">
+            <h2 id="alertText"></h2>
+            <div id="alertBody" class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()" style="display:none;"></div>
+        </div>
+    </div>
+    <div id="content" style="display:none;">
         <nav>
             <ul>
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile"></li>
+                <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
             </ul>
         </nav>
-        <br>
-        <br>
-        <div
-          class="fb-like"
-          data-share="true"
-          data-width="450"
-          data-show-faces="true">
-        </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="lightbox/min/lightbox-min.js"></script>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/min/model-min.js"></script>
+    <script src="lightbox/min/lightbox-min.js"></script>
     </body>
 </html>
