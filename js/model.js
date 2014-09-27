@@ -1,7 +1,7 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var htmlStr = '';
-var albums = [];
+var photos = [];
 // Load the SDK asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
@@ -58,14 +58,20 @@ function getAlbums() {
                         for (var j = 0; j < data[i].images.length; j++) {
                             if (data[i].images[j].height === 320){
                                 var title = data[i].name;
-                                    if (title === undefined) {
-                                        title = '.';
-                                    }
-                                img[count] = {source: data[i].images[j].source, url: data[i].source, title: title};
+                                if (title === undefined) {
+                                    title = '.';
+                                }
+                                var likes = data[i].likes;
+                                if (likes === undefined) {
+                                    likes = 0;
+                                } else {
+                                    likes = data[i].likes.data.length;
+                                }
+                                img[count] = {id: data[i].id, source: data[i].images[j].source, url: data[i].source, title: title, likes: likes,};
+                                photos.push(img[count]);
                                 count++;
                                 if (totalImg === count) {
-                                    albums.push(img);
-                                    console.log(albums);
+                                    console.log(photos);
                                     displayPhotos(img, count);
                                 }
                             }
@@ -79,7 +85,7 @@ function getAlbums() {
 
 function displayPhotos(img, count) {
     for (var i = 0; i < count; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '</figcaption></figure>';
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + ' - Likes: ' + img[i].likes + '</figcaption></figure>';
     }
     $('.gallery').html(htmlStr);
 }
