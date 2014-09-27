@@ -14,24 +14,26 @@
     </head>
     <body>
     <div id="fb-root"></div>
-    <div id="splash">
+    <div class="splash">
         <div class="alert" style="display:none;">
             <h2 id="alertText"></h2>
             <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()" style="display:none;"></div>
         </div>
     </div>
-    <div id="content" style="display:none;">
+    <div class="header" style="display:none;">
         <nav>
             <ul>
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
+                <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
             </ul>
         </nav>
-        <div class="overlay"><div class="bg"></div></div>
-        <h1>DMS Travel</h1>
+        <div class="bgOverlay"><div class="bg"></div></div>
+        <h1 id="title"></h1>
         <p id="description"></p>
+    </div>
+    <div class="gallery">
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/min/model-min.js"></script>

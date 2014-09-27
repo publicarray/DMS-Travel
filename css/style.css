@@ -1,8 +1,6 @@
 body {
   margin: 0;
   font-family: "Helvetica Neue", helvetica, arial, sans-serif;
-  color: #333;
-  background: #ccc;
 }
 nav {
   background: #fff;
@@ -19,13 +17,13 @@ nav {
 }
 nav .fb-login-button {
   float: right;
+  right: 50px;
 }
 nav ul {
   display: block;
   text-align: center;
   margin: 0;
   padding: 0;
-  height: 68px;
 }
 nav ul li {
   display: inline-block;
@@ -36,22 +34,24 @@ nav ul li a {
   display: block;
   text-decoration: none;
   padding: 20px 40px;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
 }
 nav ul li a:hover {
-  background: #88f;
+  background: #7092ed;
   color: #fff;
 }
 .fb-login-button {
-  padding: 13px 20px;
-  margin-right: 50px;
+  padding: 19px 20px;
 }
-#splash {
-  background: rgba(0,0,0,0.5);
+.splash {
+  background: rgba(80,80,80,0.8);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 999;
 }
 .alert {
   background: #fff;
@@ -60,38 +60,63 @@ nav ul li a:hover {
   padding: 100px;
   box-shadow: 0 4px 20px #000;
 }
+.header {
+  position: relative;
+  padding-bottom: 80px;
+}
 .bg {
+  background: #fff;
   background-size: cover;
   background-repeat: no-repeat;
-  -webkit-filter: blur(20px);
-          filter: blur(20px);
-  opacity: 0.7;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+  opacity: 0.5;
   height: 100%;
   width: 100%;
-  position: absolute;
 }
-.overlay {
+.bgOverlay {
   background: #000;
   opacity: 0.8;
-  height: 600px;
-  width: 100%;
   position: absolute;
-  top: 0;
+  height: 100%;
+  width: 100%;
   z-index: -1;
 }
 h1,
 #description {
-  position: relative;
   text-align: center;
   color: #fff;
   font-weight: 300;
 }
 h1 {
-  top: 130px;
+  padding: 2.3em 1em 0.8em 1em;
+  margin: 0;
   font-size: 5em;
 }
 #description {
-  top: 160px;
+  padding: 0 0 1em 0;
   margin: 0 20%;
   line-height: 2em;
 }
+.gallery {
+  padding-top: 1em;
+  text-align: center;
+  font-size: 0.8em;
+}
+.cell {
+  display: inline-block;
+  margin: 2em 1em 1em 1em;
+}
+.cell a {
+  display: inline-block;
+}
+.cell img {
+  border: solid 1px #000;
+  width: 320px;
+  height: 320px;
+}
+.cell figcaption {
+  height: 50px;
+}
+
+/*# sourceMappingURL=style.css.map */
