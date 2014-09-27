@@ -111,12 +111,24 @@ h1 {
   display: inline-block;
 }
 .cell img {
-  border: solid 1px #000;
   width: 320px;
   height: 320px;
 }
 .cell figcaption {
   height: 50px;
+}
+.cell figcaption img {
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.cell figcaption img:hover {
+  opacity: 0.8;
+}
+.cell figcaption img:active {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -88,12 +88,20 @@ h1
 .cell
     display inline-block
     margin 2em 1em 1em 1em
-    // border solid 1px #000
     a
         display inline-block
     img
-        border solid 1px #000
         width 320px
         height 320px
     figcaption
         height 50px
+        img
+            vertical-align:middle
+            width auto
+            height auto
+            margin 0 5px
+            cursor pointer
+            &:hover
+                opacity 0.8
+            &:active
+                opacity 1

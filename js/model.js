@@ -1,7 +1,7 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var htmlStr = '';
-var photos = [];
+var img = [];
 // Load the SDK asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
@@ -48,18 +48,18 @@ function displayPage() {
 function getAlbums() {
     FB.api('/'+pageId+'/albums', function (response) {
         if (response && !response.error) {
+            var noAlbums = response.data.length;
+            var currAlbum = 0;
             for (var i = 0; i < response.data.length; i++) {
                 FB.api('/' + response.data[i].id + '/photos', function (response){
                     var data = response.data;
-                    var img = {};
-                    var count = 0;
                     var totalImg = data.length;
                     for (var i = 0; i < data.length; i++) {
                         for (var j = 0; j < data[i].images.length; j++) {
                             if (data[i].images[j].height === 320){
                                 var title = data[i].name;
                                 if (title === undefined) {
-                                    title = '.';
+                                    title = '';
                                 }
                                 var likes = data[i].likes;
                                 if (likes === undefined) {
@@ -67,15 +67,15 @@ function getAlbums() {
                                 } else {
                                     likes = data[i].likes.data.length;
                                 }
-                                img[count] = {id: data[i].id, source: data[i].images[j].source, url: data[i].source, title: title, likes: likes,};
-                                photos.push(img[count]);
-                                count++;
-                                if (totalImg === count) {
-                                    console.log(photos);
-                                    displayPhotos(img, count);
-                                }
+                                img.push({id: data[i].id, source: data[i].images[j].source, url: data[i].source, title: title, likes: likes,});
                             }
                         }
+                    }
+                    currAlbum++;
+                    if (currAlbum === noAlbums) {
+                        console.log(img);
+                        displayPhotos(img);
+                        likeBtn(img);
                     }
                 });
             }
@@ -83,9 +83,35 @@ function getAlbums() {
     });
 }
 
-function displayPhotos(img, count) {
-    for (var i = 0; i < count; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + ' - Likes: ' + img[i].likes + '</figcaption></figure>';
+function displayPhotos(img) {
+    for (var i = 0; i < img.length; i++) {
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like"><span class="likes">' + img[i].likes + '</span></figcaption></figure>';
     }
     $('.gallery').html(htmlStr);
 }
+
+function likeBtn(img) {
+    for (var i = 0; i < img.length; i++) {
+        var id = img[i].id;
+        $('#'+[i]).click(like(id));
+    }
+}
+
+function like(id) {
+    return function(event) {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                FB.api('/'+id+'/likes', 'POST', function (response) {
+                    if (response.error) {
+                        alert(response.error.message);
+                    } else {
+                        console.log(response);
+                    }
+                });
+            } else {
+                alert('User canceled login or did not fully authorize the app.');
+            }
+        }, { scope: 'publish_actions' });
+    };
+}
+
