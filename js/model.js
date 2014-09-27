@@ -51,15 +51,12 @@ function getAlbums() {
             for (var i = 0; i < response.data.length; i++) {
                 FB.api('/' + response.data[i].id + '/photos', function (response){
                     var data = response.data;
-                    // console.log(data);
                     var img = {};
                     var count = 0;
                     var totalImg = data.length;
-                    var thumSize = 320;
                     for (var i = 0; i < data.length; i++) {
                         for (var j = 0; j < data[i].images.length; j++) {
-                            var imgHeight = data[i].images[j].height;
-                            if (imgHeight === thumSize){
+                            if (data[i].images[j].height === 320){
                                 var title = data[i].name;
                                     if (title === undefined) {
                                         title = '.';
@@ -67,6 +64,8 @@ function getAlbums() {
                                 img[count] = {source: data[i].images[j].source, url: data[i].source, title: title};
                                 count++;
                                 if (totalImg === count) {
+                                    albums.push(img);
+                                    console.log(albums);
                                     displayPhotos(img, count);
                                 }
                             }
@@ -79,8 +78,6 @@ function getAlbums() {
 }
 
 function displayPhotos(img, count) {
-    albums.push(img);
-    console.log(albums);
     for (var i = 0; i < count; i++) {
         htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '</figcaption></figure>';
     }
