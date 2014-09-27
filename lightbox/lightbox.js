@@ -16,7 +16,7 @@
       this.fadeDuration                = 500;
       this.fitImagesInViewport         = true;
       this.resizeDuration              = 700;
-      this.positionFromTop             = 10;
+      this.positionFromTop             = 40;
       this.showImageNumberLabel        = true;
       this.alwaysShowNavOnTouchDevices = true;
       this.wrapAround                  = true;
