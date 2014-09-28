@@ -85,7 +85,7 @@ function getAlbums() {
 
 function displayPhotos(img) {
     for (var i = 0; i < img.length; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like"><span class="likes">' + img[i].likes + '</span></figcaption></figure>';
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like">' + img[i].likes + '</figcaption></figure>';
     }
     $('.gallery').html(htmlStr);
 }
@@ -101,12 +101,27 @@ function like(id) {
     return function(event) {
         FB.login(function(response) {
             if (response.authResponse) {
-                FB.api('/'+id+'/likes', 'POST', function (response) {
-                    if (response.error) {
-                        alert(response.error.message);
-                    } else {
-                        console.log(response);
-                    }
+                FB.api('/me?fields=id', function (response) {
+                    myId = response.id;
+                    FB.api(id+'/likes?fields=id', function (response) {
+                        var like = false;
+                        for (var i = 0; i < response.data.length; i++) {
+                            if (response.data[i].id === myId) {
+                                like = true;
+                            }
+                        }
+                        if (like) {
+                            alert('I know you like this photo, but unfortunatly Facebook only allows you to like it once.');
+                        } else {
+                            FB.api('/'+id+'/likes', 'POST', function (response) {
+                                if (response.success === true) {
+                                    console.log('Like was successful');
+                                } else {
+                                    console.log(response.error.message);
+                                }
+                            });
+                        }
+                    });
                 });
             } else {
                 alert('User canceled login or did not fully authorize the app.');
@@ -115,3 +130,15 @@ function like(id) {
     };
 }
 
+// http://stackoverflow.com/questions/7652558/how-do-i-use-an-fb-apijs-sdk-response-outside-of-the-callback-function
+// function startThis() {
+//     var getUser = fbUser(function(model){
+//         console.log(model);
+//     });
+// };
+
+// function fbUser(callback){
+//     FB.api('/me', function(response){
+//         callback(response);
+//     });
+// }
