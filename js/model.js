@@ -93,52 +93,55 @@ function displayPhotos(img) {
 function likeBtn(img) {
     for (var i = 0; i < img.length; i++) {
         var id = img[i].id;
-        $('#'+[i]).click(like(id));
+        $('#'+[i]).click(askPermissionToLike(id));
     }
 }
 
-function like(id) {
+function askPermissionToLike(id) {
     return function(event) {
-        FB.login(function(response) {
-            if (response.authResponse) {
-                FB.api('/me?fields=id', function (response) {
-                    myId = response.id;
-                    FB.api(id+'/likes?fields=id', function (response) {
-                        var like = false;
-                        for (var i = 0; i < response.data.length; i++) {
-                            if (response.data[i].id === myId) {
-                                like = true;
-                            }
-                        }
-                        if (like) {
-                            alert('I know you like this photo, but unfortunatly Facebook only allows you to like it once.');
-                        } else {
-                            FB.api('/'+id+'/likes', 'POST', function (response) {
-                                if (response.success === true) {
-                                    console.log('Like was successful');
-                                } else {
-                                    console.log(response.error.message);
-                                }
-                            });
-                        }
-                    });
-                });
-            } else {
-                alert('User canceled login or did not fully authorize the app.');
+        FB.api('/me/permissions', function (response) {
+            var allowed = false;
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].permission === 'publish_actions' && response.data[i].status === 'granted') {
+                    allowed = true;
+                }
             }
-        }, { scope: 'publish_actions' });
+            if (allowed) {
+                like(id);
+            } else {
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        like(id);
+                    } else {
+                        console.log('User canceled login or did not fully authorize the app.');
+                    }
+                }, { scope: 'publish_actions' });
+            }
+        });
     };
 }
 
-// http://stackoverflow.com/questions/7652558/how-do-i-use-an-fb-apijs-sdk-response-outside-of-the-callback-function
-// function startThis() {
-//     var getUser = fbUser(function(model){
-//         console.log(model);
-//     });
-// };
-
-// function fbUser(callback){
-//     FB.api('/me', function(response){
-//         callback(response);
-//     });
-// }
+function like(id) {
+    FB.api('/me?fields=id', function (response) {
+        myId = response.id;
+        FB.api(id+'/likes?fields=id', function (response) {
+            var like = false;
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].id === myId) {
+                    like = true;
+                }
+            }
+            if (like) {
+                alert('I know you like this photo, but unfortunatly Facebook only allows you to like it once.');
+            } else {
+                FB.api('/'+id+'/likes', 'POST', function (response) {
+                    if (response.success === true) {
+                        console.log('Like was successful');
+                    } else {
+                        console.log(response.error.message);
+                    }
+                });
+            }
+        });
+    });
+}

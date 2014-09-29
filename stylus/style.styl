@@ -46,11 +46,29 @@ nav
     bottom 0
     z-index 999
 .alert
+    position fixed
+    top 50%
+    left 50%
     background #fff
     text-align center
-    margin 200px
+    margin -200px 0 0 -250px
     padding 100px
+    width 300px
+    max-width 100%
     box-shadow 0 4px 20px #000
+.plane
+    position fixed
+    top 100%
+    -webkit-animation animation 5s linear 0s infinite /* Chrome, Safari, Opera */
+    animation animation 5s linear 0s infinite
+@keyframes animation
+    0%
+        top 100%
+        left 0
+    100%
+        top -50px
+        left 100%
+
 .header
     position relative
     padding-bottom 80px
