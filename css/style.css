@@ -143,8 +143,8 @@ h1 {
 }
 @-webkit-keyframes animation {
   0% {
-    top: 100%;
-    left: 0;
+    top: 80%;
+    left: -400px;
   }
   100% {
     top: -50px;
@@ -153,8 +153,8 @@ h1 {
 }
 @keyframes animation {
   0% {
-    top: 100%;
-    left: 0;
+    top: 80%;
+    left: -400px;
   }
   100% {
     top: -50px;
