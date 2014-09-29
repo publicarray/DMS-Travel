@@ -1,6 +1,5 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
-var htmlStr = '';
 var img = [];
 // Load the SDK asynchronously
 $(document).ready(function() {
@@ -84,8 +83,9 @@ function getAlbums() {
 }
 
 function displayPhotos(img) {
+    var htmlStr = '';
     for (var i = 0; i < img.length; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like">' + img[i].likes + '</figcaption></figure>';
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></figcaption></figure>';
     }
     $('.gallery').html(htmlStr);
 }
@@ -93,11 +93,11 @@ function displayPhotos(img) {
 function likeBtn(img) {
     for (var i = 0; i < img.length; i++) {
         var id = img[i].id;
-        $('#'+[i]).click(askPermissionToLike(id));
+        $('#'+i).click(askPermissionToLike(id, i));
     }
 }
 
-function askPermissionToLike(id) {
+function askPermissionToLike(id, j) {
     return function(event) {
         FB.api('/me/permissions', function (response) {
             var allowed = false;
@@ -107,7 +107,7 @@ function askPermissionToLike(id) {
                 }
             }
             if (allowed) {
-                like(id);
+                like(id, j);
             } else {
                 FB.login(function(response) {
                     if (response.authResponse) {
@@ -121,7 +121,7 @@ function askPermissionToLike(id) {
     };
 }
 
-function like(id) {
+function like(id, j) {
     FB.api('/me?fields=id', function (response) {
         myId = response.id;
         FB.api(id+'/likes?fields=id', function (response) {
@@ -137,6 +137,9 @@ function like(id) {
                 FB.api('/'+id+'/likes', 'POST', function (response) {
                     if (response.success === true) {
                         console.log('Like was successful');
+                        var newLike = img[j].likes;
+                        newLike++;
+                        $('#'+j).next().text(newLike);
                     } else {
                         console.log(response.error.message);
                     }
