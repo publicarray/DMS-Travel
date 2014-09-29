@@ -141,6 +141,18 @@ h1 {
 .cell figcaption img:active {
   opacity: 1;
 }
+#searchTxt,
+.btn {
+  line-height: 1.85em;
+  margin: 15px;
+  padding: 5px;
+  border: 1px #888 solid;
+  border-radius: 0;
+}
+#searchTxt {
+  width: 300px;
+  color: #888;
+}
 @-webkit-keyframes animation {
   0% {
     top: 80%;

@@ -72,7 +72,6 @@ function getAlbums() {
                     }
                     currAlbum++;
                     if (currAlbum === noAlbums) {
-                        console.log(img);
                         displayPhotos(img);
                         likeBtn(img);
                     }
@@ -84,6 +83,7 @@ function getAlbums() {
 
 function displayPhotos(img) {
     var htmlStr = '';
+    console.log(img);
     for (var i = 0; i < img.length; i++) {
         htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></figcaption></figure>';
     }
@@ -147,4 +147,21 @@ function like(id, j) {
             }
         });
     });
+}
+
+$('input').keypress(function(e) {
+    if (e.which === 13) {
+        search();
+    }
+});
+
+function search() {
+    var searchImg = [];
+    var query = $('#searchTxt').val().toLowerCase().replace(/\s/g, "");
+    for (var i = 0; i < img.length; i++) {
+        if (img[i].title.toLowerCase().replace(/\s/g, "").indexOf(query) != -1) {
+            searchImg.push(img[i]);
+        }
+    }
+    displayPhotos(searchImg);
 }
