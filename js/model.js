@@ -1,6 +1,7 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var img = [];
+var searchImg = [];
 // Load the SDK asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
@@ -156,7 +157,7 @@ $('input').keypress(function(e) {
 });
 
 function search() {
-    var searchImg = [];
+    searchImg = [];
     var query = $('#searchTxt').val().toLowerCase().replace(/\s/g, "");
     for (var i = 0; i < img.length; i++) {
         if (img[i].title.toLowerCase().replace(/\s/g, "").indexOf(query) != -1) {
@@ -164,4 +165,77 @@ function search() {
         }
     }
     displayPhotos(searchImg);
+    orderBy(document.getElementById('sort'));
+    console.log(document.getElementById('sort'));
+}
+
+function orderBy(n){
+    if (searchImg.length > 0){
+        var orderByImg = searchImg;
+    } else {
+        var orderByImg = img;
+    }
+    switch (n.selectedIndex) {
+        case 1:
+            displayPhotos(orderByImg.sort(function(a, b) {
+                if (a.likes - b.likes === 0) {
+                    if (a.title < b.title) {
+                        return -1;
+                    }
+                    if (a.title > b.title) {
+                        return 1;
+                    }
+                } else {
+                    return a.likes - b.likes;
+                }
+            }));
+            break;
+        case 2:
+            displayPhotos(orderByImg.sort(function(a, b) {
+                if (b.likes - a.likes === 0) {
+                    if (a.title < b.title) {
+                        return -1;
+                    }
+                    if (a.title > b.title) {
+                        return 1;
+                    }
+                } else {
+                    return b.likes - a.likes;
+                }
+            }));
+            break;
+        case 3:
+            displayPhotos(orderByImg.sort(function(a, b) {
+                if (a.title < b.title) {
+                    return -1;
+                }
+                if (a.title > b.title) {
+                    return 1;
+                }
+                if (a.title === b.title) {
+                    return b.likes - a.likes;
+                }
+            }));
+            break;
+        case 4:
+            displayPhotos(orderByImg.sort(function(a, b) {
+                if (b.title < a.title) {
+                    return -1;
+                }
+                if (b.title > a.title) {
+                    return 1;
+                }
+                if (b.title === a.title) {
+                    return a.likes - b.likes;
+                }
+            }));
+    }
+
+    if(n.selectedIndex === 0) {
+
+    } else if(n.selectedIndex === 1){
+
+    } else if (n.selectedIndex === 2){
+
+    }
 }

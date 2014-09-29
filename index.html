@@ -35,7 +35,20 @@
         <p id="description"></p>
     </div>
     <div class="bar">
-        <input id="searchTxt" type="search"> <input class="btn" type="button" value="Search" onclick="search()">
+        <div class="order">
+            <span>Sort By</span>
+            <select id='sort' onchange="return orderBy(this)">
+                <option></option>
+                <option>Likes Ascending</option>
+                <option>Likes Descending</option>
+                <option>Title Ascending</option>
+                <option>Title Descending</option>
+            </select>
+        </div>
+        <div class="search">
+            <input id="searchTxt" type="search">
+            <input class="btn" id="searchBtn" type="button" value="Search" onclick="search()">
+        </div>
     </div>
     <div class="gallery"></div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
