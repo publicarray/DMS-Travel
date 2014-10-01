@@ -179,6 +179,12 @@ select {
 #searchTxt:focus {
   border-color: #7092ed;
 }
+footer {
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 5em 0;
+  background: #eee;
+}
 @-webkit-keyframes animation {
   0% {
     top: 80%;

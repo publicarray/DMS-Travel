@@ -1,7 +1,6 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var img = [];
-var searchImg = [];
 // Load the SDK asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
@@ -53,7 +52,6 @@ function getAlbums() {
             for (var i = 0; i < response.data.length; i++) {
                 FB.api('/' + response.data[i].id + '/photos', function (response){
                     var data = response.data;
-                    var totalImg = data.length;
                     for (var i = 0; i < data.length; i++) {
                         for (var j = 0; j < data[i].images.length; j++) {
                             if (data[i].images[j].height === 320){
@@ -124,7 +122,7 @@ function askPermissionToLike(id, j) {
 
 function like(id, j) {
     FB.api('/me?fields=id', function (response) {
-        myId = response.id;
+        var myId = response.id;
         FB.api(id+'/likes?fields=id', function (response) {
             var like = false;
             for (var i = 0; i < response.data.length; i++) {
@@ -156,11 +154,13 @@ $('input').keypress(function(e) {
     }
 });
 
+// Controller.js
+var searchImg = [];
 function search() {
     searchImg = [];
     var query = $('#searchTxt').val().toLowerCase().replace(/\s/g, "");
     for (var i = 0; i < img.length; i++) {
-        if (img[i].title.toLowerCase().replace(/\s/g, "").indexOf(query) != -1) {
+        if (img[i].title.toLowerCase().replace(/\s/g, "").indexOf(query) !== -1) {
             searchImg.push(img[i]);
         }
     }
@@ -170,10 +170,11 @@ function search() {
 }
 
 function orderBy(n){
+     var orderByImg = [];
     if (searchImg.length > 0){
-        var orderByImg = searchImg;
+        orderByImg = searchImg;
     } else {
-        var orderByImg = img;
+        orderByImg = img;
     }
     switch (n.selectedIndex) {
         case 1:
@@ -229,13 +230,5 @@ function orderBy(n){
                     return a.likes - b.likes;
                 }
             }));
-    }
-
-    if(n.selectedIndex === 0) {
-
-    } else if(n.selectedIndex === 1){
-
-    } else if (n.selectedIndex === 2){
-
     }
 }
