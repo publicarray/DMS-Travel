@@ -98,23 +98,27 @@ function likeBtn(img) {
 
 function askPermissionToLike(id, j) {
     return function(event) {
+        console.log('likeBtn pressed');
         FB.api('/me/permissions', function (response) {
             var allowed = false;
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].permission === 'publish_actions' && response.data[i].status === 'granted') {
+                    console.log('permission granted');
+                    like(id, j);
                     allowed = true;
                 }
             }
-            if (allowed) {
-                like(id, j);
-            } else {
-                FB.login(function(response) {
+            if (!allowed) {
+                console.log('Asking for additional permissions...');
+                FB.login(function (response) {
                     if (response.authResponse) {
-                        like(id);
+                        like(id, j);
+                        console.log('Permissions set successfully');
+
                     } else {
                         console.log('User canceled login or did not fully authorize the app.');
                     }
-                }, { scope: 'publish_actions' });
+                }, {scope: 'publish_actions' });
             }
         });
     };
@@ -123,16 +127,18 @@ function askPermissionToLike(id, j) {
 function like(id, j) {
     FB.api('/me?fields=id', function (response) {
         var myId = response.id;
+        console.log('grabbing user ID: ' +myId);
         FB.api(id+'/likes?fields=id', function (response) {
-            var like = false;
+            var liked = false;
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].id === myId) {
-                    like = true;
+                    console.log('alert user');
+                    alert('I know you like this photo, but unfortunately Facebook only allows you to like it once.');
+                    liked = true;
                 }
             }
-            if (like) {
-                alert('I know you like this photo, but unfortunatly Facebook only allows you to like it once.');
-            } else {
+            if (!liked) {
+                console.log('liking...');
                 FB.api('/'+id+'/likes', 'POST', function (response) {
                     if (response.success === true) {
                         console.log('Like was successful');
@@ -140,7 +146,8 @@ function like(id, j) {
                         newLike++;
                         $('#'+j).next().text(newLike);
                     } else {
-                        console.log(response.error.message);
+                        console.log('An error occurred:' + response.error.message);
+                        console.log(response);
                     }
                 });
             }
