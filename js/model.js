@@ -103,20 +103,22 @@ function askPermissionToLike(id, j) {
             var allowed = false;
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].permission === 'publish_actions' && response.data[i].status === 'granted') {
-                    console.log('permission granted');
+                    console.log('User has required permissions');
                     like(id, j);
                     allowed = true;
                 }
             }
             if (!allowed) {
+                console.log('User does not have required permissions');
                 console.log('Asking for additional permissions...');
                 FB.login(function (response) {
                     if (response.authResponse) {
                         like(id, j);
-                        console.log('Permissions set successfully');
+                        console.log('Got access token');
 
                     } else {
-                        console.log('User canceled login or did not fully authorize the app.');
+                        // unlikely, means user is not logged in/ not authorized app.
+                        console.log('User canceled login or did not authorize the app.');
                     }
                 }, {scope: 'publish_actions' });
             }
@@ -127,9 +129,10 @@ function askPermissionToLike(id, j) {
 function like(id, j) {
     FB.api('/me?fields=id', function (response) {
         var myId = response.id;
-        console.log('grabbing user ID: ' +myId);
+        console.log('Grabbing user ID: ' +myId);
         FB.api(id+'/likes?fields=id', function (response) {
             var liked = false;
+            console.log('Checking if previously liked...');
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].id === myId) {
                     console.log('alert user');
@@ -138,7 +141,7 @@ function like(id, j) {
                 }
             }
             if (!liked) {
-                console.log('liking...');
+                console.log('Liking...');
                 FB.api('/'+id+'/likes', 'POST', function (response) {
                     if (response.success === true) {
                         console.log('Like was successful');
@@ -146,7 +149,7 @@ function like(id, j) {
                         newLike++;
                         $('#'+j).next().text(newLike);
                     } else {
-                        console.log('An error occurred:' + response.error.message);
+                        console.log('An error occurred: ' + response.error.message);
                         console.log(response);
                     }
                 });
