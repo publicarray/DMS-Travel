@@ -17,7 +17,18 @@ nav {
 }
 nav .fb-login-button {
   float: right;
-  right: 50px;
+}
+nav #user {
+  font-size: 0.7em;
+  float: right;
+}
+nav #user figure {
+  margin: 5px 70px 5px 0;
+}
+nav #user img {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
 }
 nav ul {
   display: block;
