@@ -14,14 +14,14 @@
     </head>
     <body>
     <div id="fb-root"></div>
-    <div class="splash" style="display:none;">
-        <img class="plane" src="img/plane.png" alt="">
-        <div class="alert" style="display:none;">
+    <div id="splash" style="display:none;">
+        <img id="plane" src="img/plane.png" alt="">
+        <div id="alert" style="display:none;">
             <h2 id="alertText"></h2>
             <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()" style="display:none;"></div>
         </div>
     </div>
-    <div class="header">
+    <div id="header">
         <nav>
             <ul>
                 <li><a href="index.html" title="Home">Home</a></li>
@@ -31,12 +31,12 @@
                 <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
             </ul>
         </nav>
-        <div class="bgOverlay"><div class="bg"></div></div>
+        <div id="bgOverlay"><div id="bg"></div></div>
         <h1 id="title"></h1>
         <p id="description"></p>
     </div>
-    <div class="bar">
-        <div class="order">
+    <div id="bar">
+        <div id="order">
             <span>Sort By</span>
             <select id='sort' onchange="return orderBy(this)">
                 <option></option>
@@ -46,12 +46,12 @@
                 <option>Title Descending</option>
             </select>
         </div>
-        <div class="search">
+        <div id="search">
             <input id="searchTxt" type="search">
             <input class="btn" id="searchBtn" type="button" value="Search" onclick="search()">
         </div>
     </div>
-    <div class="gallery"></div>
+    <div id="gallery"></div>
     <footer>
         <p>Website design by Sebastian Schmidt &nbsp;|&nbsp; Copyright 2014 Sebastian Schmidt &nbsp;|&nbsp; <a href="privacypolicy.html">Privacy Policy</a></p>
     </footer>
