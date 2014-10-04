@@ -25,25 +25,12 @@ function loginCallback(){
             $('#alertBody').hide();
             $('#alert').delay(1500).fadeOut(2000);
             $('#splash').fadeOut(2000);
-            displayHeader();
             displayMe();
-            displayDeveloper();
         } else {
             $('#alert').fadeIn(2000);
             $('#splash').fadeIn(2000);
             $('#alertText').text('Please Login');
             $('#alertBody').show();
-        }
-    });
-}
-
-// Show the header with information from the facebook page; including name, description and cover image
-function displayHeader() {
-    FB.api('/'+pageId, 'get', function(response) {
-        if (response && !response.error) {
-            $('#bg').css('background-image', 'url("'+response.cover.source+'")');
-            $('#title').text(response.name);
-            $('#description').text(response.description);
         }
     });
 }
@@ -56,22 +43,6 @@ function displayMe() {
             FB.api('/me/picture?redirect=false&type=square', 'get', function(response) {
                 if (response && !response.error) {
                     $('#user').html('<figure><img src="'+response.data.url+'"><figcaption>'+name+'</figcaption></figure>');
-                }
-            });
-        }
-    });
-}
-
-// Show the facebook name, profile picture and link of the developer
-function displayDeveloper() {
-    var id = '780653805331955'
-    FB.api('/'+id+'?fields=link,name', 'get', function(response) {
-        if (response && !response.error) {
-            var developer = response;
-            FB.api('/'+id+'/picture?redirect=false&type=large', 'get', function(response) {
-                if (response && !response.error) {
-                    var htmlString = '<a href="'+developer.link+'"><h2>'+developer.name+'</h2></a><a href="'+developer.link+'"><img src="'+response.data.url+'" alt="'+developer.name+'"></a><h3>App Developer</h3>';
-                    $('#developer').html(htmlString);
                 }
             });
         }

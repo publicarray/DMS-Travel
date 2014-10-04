@@ -16,6 +16,11 @@ function likeBtn(img) {
     }
 }
 
+// Hides & Shows facebook logout button when #user is clicked
+function toggleDropdown() {
+    $('#dropdown').toggle();
+}
+
 // When user presses the RETURN key perform search()
 $('input').keypress(function(e) {
     if (e.which === 13) {

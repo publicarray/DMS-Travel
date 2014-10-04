@@ -15,25 +15,37 @@ nav {
   left: 0px;
   font-weight: 300;
 }
-nav .fb-login-button {
-  float: right;
-}
 nav #user {
+  cursor: pointer;
   font-size: 0.7em;
   float: right;
+  width: 123px;
+  height: 64px;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
 }
 nav #user figure {
-  margin: 5px 70px 5px 0;
+  margin: 5px;
 }
 nav #user img {
   width: 35px;
   height: 35px;
   display: inline-block;
 }
+nav #user:hover {
+  background: #7092ed;
+  color: #fff;
+}
+nav #dropdown {
+  position: absolute;
+  right: 70px;
+  top: 64px;
+  background: #7092ed;
+}
 nav ul {
   display: block;
   text-align: center;
-  margin: 0;
+  margin: 0 70px;
   padding: 0;
 }
 nav ul li {
@@ -53,7 +65,7 @@ nav ul li a:hover {
   color: #fff;
 }
 .fb-login-button {
-  padding: 19px 20px;
+  padding: 19px 19px;
 }
 #splash {
   background: rgba(80,80,80,0.8);
@@ -191,10 +203,26 @@ select {
   border-color: #7092ed;
 }
 footer {
+  clear: both;
   text-align: center;
   letter-spacing: 2px;
   padding: 5em 0;
   background: #eee;
+}
+.center {
+  margin: 1em auto;
+  float: left;
+  width: 50%;
+}
+#developer {
+  float: right;
+  padding: 0 1em;
+}
+#developer img {
+  width: 100%;
+}
+#devtext {
+  padding: 3.3em 1em;
 }
 @-webkit-keyframes animation {
   0% {

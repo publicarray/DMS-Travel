@@ -14,16 +14,26 @@
     </head>
     <body>
     <div id="fb-root"></div>
+    <div id="splash" style="display:none;">
+        <img id="plane" src="img/plane.png" alt="">
+        <div id="alert" style="display:none;">
+            <h2 id="alertText"></h2>
+            <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()" style="display:none;"></div>
+        </div>
+    </div>
     <div id="header">
         <nav>
             <ul>
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
+                <li id="user" onclick="toggleDropdown()"></li>
+                <li class="fb-login-button" id="dropdown" style="display:none;" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
             </ul>
         </nav>
-        <div id="bgOverlay"><div id="bg" style="background-image:url('img/book.jpg'); opacity:.8;"></div></div>
+        <div id="bgOverlay">
+            <div id="bg" style="background-image:url('img/book.jpg'); opacity:.8;"></div>
+        </div>
         <h1 id="title">Documentation</h1>
         <p id="description"></p>
     </div>
@@ -32,6 +42,7 @@
         <p>Website design by Sebastian Schmidt &nbsp;|&nbsp; Copyright 2014 Sebastian Schmidt &nbsp;|&nbsp; <a href="privacypolicy.html">Privacy Policy</a></p>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/min/doc-model-min.js"></script>
     <script src="lightbox/min/lightbox-min.js" async></script>
     </body>
 </html>

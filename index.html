@@ -27,11 +27,13 @@
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li id="user"></li>
-                <li class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
+                <li id="user" onclick="toggleDropdown()"></li>
+                <li class="fb-login-button" id="dropdown" style="display:none;" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
             </ul>
         </nav>
-        <div id="bgOverlay"><div id="bg"></div></div>
+        <div id="bgOverlay">
+            <div id="bg"></div>
+        </div>
         <h1 id="title"></h1>
         <p id="description"></p>
     </div>
