@@ -41,9 +41,9 @@ function loginCallback(){
 function displayHeader() {
     FB.api('/'+pageId, 'get', function(response) {
         if (response && !response.error) {
-            $('#bg').css('background-image', 'url("'+response.cover.source+'")');
+            // $('#bg').css('background-image', 'url("'+response.cover.source+'")');
             $('#title').text(response.name);
-            $('#description').text(response.description);
+            // $('#description').text(response.description);
         }
     });
 }
