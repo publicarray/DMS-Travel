@@ -3,6 +3,7 @@
 a
     background-color transparent
     color #7092ed
+    text-decoration none
     &:active, &:hover
         outline 0
         text-decoration underline
@@ -28,11 +29,10 @@ nav
     font-weight 300
     padding 0
     z-index 99
-    position fixed
+    position absolute
     top 0px
     right 0px
     left 0px
-    transition all 250ms ease
     #user
         display none
         cursor pointer
@@ -40,6 +40,7 @@ nav
         float right
         width 123px
         height 64px
+        transition all 250ms ease
         figure
             margin 5px
         img
@@ -63,13 +64,14 @@ nav
             width 100%
             display inline-block
             a
-                width 87%
+                box-sizing border-box
+                width 100%
                 color #333
                 float left
                 display block
                 text-decoration none
                 padding 20px 40px
-                height 24px
+                height 64px
                 transition all 250ms ease
                 &:hover
                     text-decoration none
@@ -200,7 +202,8 @@ input, select
         a
             display inline-block
         img
-            width 320px
+            width 100%
+            max-width 320px
             height 320px
             &:hover
                 box-shadow 0 1px 2px 1px #999
@@ -255,6 +258,7 @@ footer
 // tablet
 @media (min-width 632px)
     nav
+        position fixed
         padding 0 $pad
         ul
             li

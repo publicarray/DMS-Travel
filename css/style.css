@@ -2,6 +2,7 @@
 a {
   background-color: transparent;
   color: #7092ed;
+  text-decoration: none;
 }
 a:active,
 a:hover {
@@ -31,12 +32,10 @@ nav {
   font-weight: 300;
   padding: 0;
   z-index: 99;
-  position: fixed;
+  position: absolute;
   top: 0px;
   right: 0px;
   left: 0px;
-  -webkit-transition: all 250ms ease;
-          transition: all 250ms ease;
 }
 nav #user {
   display: none;
@@ -45,6 +44,8 @@ nav #user {
   float: right;
   width: 123px;
   height: 64px;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
 }
 nav #user figure {
   margin: 5px;
@@ -75,13 +76,15 @@ nav ul li {
   display: inline-block;
 }
 nav ul li a {
-  width: 87%;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  width: 100%;
   color: #333;
   float: left;
   display: block;
   text-decoration: none;
   padding: 20px 40px;
-  height: 24px;
+  height: 64px;
   -webkit-transition: all 250ms ease;
           transition: all 250ms ease;
 }
@@ -242,7 +245,8 @@ select:focus {
   display: inline-block;
 }
 #gallery .cell img {
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   height: 320px;
 }
 #gallery .cell img:hover {
@@ -309,6 +313,7 @@ footer {
 }
 @media (min-width: 632px) {
   nav {
+    position: fixed;
     padding: 0 70px;
   }
   nav ul li {
