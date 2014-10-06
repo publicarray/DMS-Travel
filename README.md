@@ -15,3 +15,6 @@ The website uses emphasis to give an object more importance. For example the hea
 
 ## Alignment
 The Website uses alignment to associate similar or related items next to each other. For example the like button and image description relates to an image and are thus positioned in close proximity to it. The images are positioned in an invisible grid to make them separate entities.
+
+# Attributions
+The photos where taken from [pixabay.com](http://pixabay.com/) and are licenced under [CC0 Public Domain](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
