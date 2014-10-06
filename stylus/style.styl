@@ -1,8 +1,9 @@
 $nav-a-pad = 20px
+$pad = 70px
 $minwidth = 760px
 body
     margin 0
-    font-family "Helvetica Neue", helvetica, arial, sans-serif
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
 nav
     background #fff
     background rgba(255, 255, 255, 0.9)
@@ -34,13 +35,13 @@ nav
             color #fff
     #dropdown
         position absolute
-        right 70px
+        right $pad
         top 64px
         background #7092ed
     ul
         display block
         text-align center
-        margin 0 70px
+        margin 0 $pad
         padding 0
         li
             display inline-block
@@ -91,34 +92,34 @@ nav
 #header
     position relative
     padding-bottom 80px
-#bg
-    background #fff
-    background-size cover
-    background-repeat no-repeat
-    filter blur(2px)
-    opacity 0.5
-    height 100%
-    width 100%
-#bgOverlay
-    background black
-    opacity 0.8
-    position absolute
-    height 100%
-    width 100%
-    z-index -1
-h1, #description
-    text-align center
-    color #fff
-    font-weight 300
-    text-shadow 0 0 15px rgba(0,0,0,0.6)
-h1
-    padding 2.3em 1em .8em 1em
-    margin 0
-    font-size 5em
-#description
-    padding 0 0 1em 0
-    margin 0 20%
-    line-height 2em
+    h1, #description
+        text-align center
+        color #fff
+        font-weight 300
+        text-shadow 0 0 15px rgba(0,0,0,0.6)
+    h1
+        padding 2.3em 1em .8em 1em
+        margin 0
+        font-size 5em
+    #description
+        padding 0 0 1em 0
+        margin 0 20%
+        line-height 2em
+    #bg
+        background #fff
+        background-size cover
+        background-repeat no-repeat
+        filter blur(2px)
+        opacity 0.5
+        height 100%
+        width 100%
+    #bgOverlay
+        background black
+        opacity 0.8
+        position absolute
+        height 100%
+        width 100%
+        z-index -1
 #gallery
     clear both
     padding-top 1em
@@ -174,7 +175,7 @@ footer
     clear both
     text-align center
     letter-spacing 2px
-    padding 5em 0
+    padding 5em 1em
     background #eee
 .center
     margin 1em auto
@@ -187,3 +188,15 @@ footer
         width 100%
 #devtext
     padding 3.3em 1em
+.content
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    line-height 1.2
+    max-width 900px
+    padding 0 $pad
+    margin 0 auto
+    h1, h2, h3
+        font-weight 500
+        padding 0 0 0.3em 0
+        border-bottom 1px solid #eee
+    p
+        margin 0 0 1em 1em
