@@ -3,7 +3,7 @@ function displayPhotos(img) {
     var htmlStr = '';
     console.log(img);
     for (var i = 0; i < img.length; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption>' + img[i].title + '<br><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></figcaption></figure>';
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '"><img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption><span class="left">' + img[i].title + '</span><span class="right"><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></span></figcaption></figure>';
     }
     $('#gallery').html(htmlStr);
 }
@@ -27,6 +27,22 @@ $('input').keypress(function(e) {
         search();
     }
 });
+
+// for responsive webdesign
+// http://gomakethings.com/javascript-resize-performance/
+var resizeTimer;
+function resizeFunction() {
+    console.log('Checked size');
+    if ($(window).width() < 760) {
+        $('#dropdown').hide();
+    } else {
+    }
+};
+$(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeFunction, 500);
+});
+resizeFunction();
 
 var searchImg = [];
 // Grab user input from #searchTxt and perform search in img[] array and push the output into searchImg[].

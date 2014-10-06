@@ -55,3 +55,19 @@ function displayMe() {
 function toggleDropdown() {
     $('#dropdown').toggle();
 }
+
+// for responsive webdesign
+// http://gomakethings.com/javascript-resize-performance/
+var resizeTimer;
+function resizeFunction() {
+    console.log('Checked size');
+    if ($(window).width() < 760) {
+        $('#dropdown').hide();
+    } else {
+    }
+};
+$(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeFunction, 500);
+});
+resizeFunction();

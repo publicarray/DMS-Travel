@@ -1,30 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather)
 // from normalize.css
 a
-  background-color transparent
+    background-color transparent
+    color #7092ed
+
+
     &:active, &:hover
-      outline 0
+        outline 0
+        text-decoration underline
 strong
-  font-weight bold
+    font-weight bold
 h1
-  font-size 2em
-  margin 0.67em 0
+    font-size 2em
+    margin 0.67em 0
 img
-  border 0
+    border 0
 
 // user styles
 $pad = 70px
-$minwidth = 760px
 body
     margin 0
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    font-family "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif
+    word-wrap break-word
 nav
     background #fff
     background rgba(255, 255, 255, 0.9)
     box-shadow 0 1px 3px rgba(0, 0, 0, 0.4)
     font-size 1.2em
     font-weight 300
-    height 64px
-    padding 0 $pad
+    padding 0
     z-index 99
     position fixed
     top 0px
@@ -32,7 +36,8 @@ nav
     left 0px
     transition all 250ms ease
     #user
-        cursor: pointer;
+        display none
+        cursor pointer
         font-size 0.7em
         float right
         width 123px
@@ -57,15 +62,19 @@ nav
         margin 0
         padding 0
         li
+            width 100%
             display inline-block
             a
+                width 87%
                 color #333
                 float left
                 display block
                 text-decoration none
                 padding 20px 40px
+                height 24px
                 transition all 250ms ease
                 &:hover
+                    text-decoration none
                     background #7092ed
                     color #fff
 .fb-login-button
@@ -168,26 +177,28 @@ input, select
     #search
         float right
         #searchTxt
-            width 300px
+            -webkit-appearance none
+            width 120px
 .content
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-    line-height 1.2
+    font-family 'Merriweather', serif
+    padding 0 20px
     max-width 900px
-    padding 0 $pad
     margin 0 auto
     h1, h2, h3
         font-weight 500
         padding 0 0 0.3em 0
         border-bottom 1px solid #eee
     p
+        line-height 1.2em
         margin 0 0 1em 1em
 #gallery
     clear both
     text-align center
-    font-size 0.8em
+    font-size 0.9em
+    margin 1em 0
     .cell
         display inline-block
-        margin 2em 1em 1em 1em
+        margin 1em 1em 1em 1em
         a
             display inline-block
         img
@@ -196,7 +207,8 @@ input, select
             &:hover
                 box-shadow 0 1px 2px 1px #999
         figcaption
-            height 50px
+            text-align left
+            height 40px
             img
                 vertical-align:middle
                 width auto
@@ -219,6 +231,11 @@ footer
     margin 1em auto
     float left
     width 50%
+.left
+    float left
+    width 255px
+.right
+    float right
 #developer
     float right
     padding 0 1em
@@ -226,3 +243,25 @@ footer
         width 100%
 #devtext
     padding 3.3em 1em
+
+// breakpoint at > 760px
+// destop nav
+@media (min-width 760px)
+    nav
+        height 64px
+        #user
+            display inline-block
+    #bar
+        #search
+            #searchTxt
+                width 300px
+@media (min-width 632px)
+    nav
+        padding 0 $pad
+        ul
+            li
+                width auto
+                a
+                    width auto
+    .content
+        padding 0 $pad
