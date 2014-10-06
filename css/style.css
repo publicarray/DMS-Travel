@@ -1,3 +1,17 @@
+a background-color transparent:active,
+a background-color transparent:hover {
+  outline: 0;
+}
+strong {
+  font-weight: bold;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+img {
+  border: 0;
+}
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
@@ -7,13 +21,16 @@ nav {
   background: rgba(255,255,255,0.9);
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   font-size: 1.2em;
+  font-weight: 300;
   height: 64px;
+  padding: 0 70px;
   z-index: 99;
   position: fixed;
   top: 0px;
   right: 0px;
   left: 0px;
-  font-weight: 300;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
 }
 nav #user {
   cursor: pointer;
@@ -21,8 +38,6 @@ nav #user {
   float: right;
   width: 123px;
   height: 64px;
-  -webkit-transition: all 250ms ease;
-          transition: all 250ms ease;
 }
 nav #user figure {
   margin: 5px;
@@ -45,7 +60,7 @@ nav #dropdown {
 nav ul {
   display: block;
   text-align: center;
-  margin: 0 70px;
+  margin: 0;
   padding: 0;
 }
 nav ul li {
@@ -65,7 +80,7 @@ nav ul li a:hover {
   color: #fff;
 }
 .fb-login-button {
-  padding: 19px 19px;
+  padding: 19px;
 }
 #splash {
   background: rgba(80,80,80,0.8);
@@ -76,7 +91,7 @@ nav ul li a:hover {
   bottom: 0;
   z-index: 999;
 }
-#alert {
+#splash #alert {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -88,7 +103,7 @@ nav ul li a:hover {
   max-width: 100%;
   box-shadow: 0 4px 20px #000;
 }
-#plane {
+#splash #plane {
   position: fixed;
   top: 100%;
   -webkit-animation: animation 5s linear 0s infinite;
@@ -133,77 +148,112 @@ nav ul li a:hover {
   width: 100%;
   z-index: -1;
 }
-#gallery {
-  clear: both;
-  padding-top: 1em;
-  text-align: center;
-  font-size: 0.8em;
-}
-.cell {
-  display: inline-block;
-  margin: 2em 1em 1em 1em;
-}
-.cell a {
-  display: inline-block;
-}
-.cell img {
-  width: 320px;
-  height: 320px;
-}
-.cell figcaption {
-  height: 50px;
-}
-.cell figcaption img {
-  vertical-align: middle;
-  width: auto;
-  height: auto;
-  margin: 0 5px;
-  cursor: pointer;
-}
-.cell figcaption img:hover {
-  opacity: 0.8;
-}
-.cell figcaption img:active {
-  opacity: 1;
-}
-#bar {
-  margin: 0 70px;
-}
-#order {
-  float: left;
-}
-#search {
-  float: right;
-}
 input,
 select {
   display: inline-block;
-  line-height: 1.85em;
   margin: 15px 0;
   padding: 5px;
-  border: 1px #888 solid;
+  border: 1px #bbb solid;
   border-radius: 0;
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
+  height: 20px;
+  text-transform: none;
+}
+input:hover,
+select:hover {
+  box-shadow: 0 1px 2px #999;
+}
+input:focus,
+select:focus {
+  border-color: #7092ed;
+}
+.btn {
+  -webkit-appearance: button;
+  cursor: pointer;
 }
 .btn:hover {
   border-color: #7092ed;
   background: #7092ed;
   color: #fff;
 }
-#searchTxt,
-#searchBtn {
+#bar {
+  padding: 0 70px;
+  background: #eee;
+}
+#bar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+#bar #order {
+  float: left;
+}
+#bar #order #sort {
+  height: 30px;
+  padding: 0;
+}
+#bar #search {
+  float: right;
+}
+#bar #search #searchTxt {
+  width: 300px;
+}
+.content {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  line-height: 1.2;
+  max-width: 900px;
+  padding: 0 70px;
+  margin: 0 auto;
+}
+.content h1,
+.content h2,
+.content h3 {
+  font-weight: 500;
+  padding: 0 0 0.3em 0;
+  border-bottom: 1px solid #eee;
+}
+.content p {
+  margin: 0 0 1em 1em;
+}
+#gallery {
+  clear: both;
+  text-align: center;
+  font-size: 0.8em;
+}
+#gallery .cell {
+  display: inline-block;
+  margin: 2em 1em 1em 1em;
+}
+#gallery .cell a {
   display: inline-block;
 }
-#searchTxt {
-  width: 300px;
-  color: #888;
+#gallery .cell img {
+  width: 320px;
+  height: 320px;
 }
-#searchTxt:hover {
-  border-color: #000;
+#gallery .cell img:hover {
+  box-shadow: 0 1px 2px 1px #999;
 }
-#searchTxt:focus {
-  border-color: #7092ed;
+#gallery .cell figcaption {
+  height: 50px;
+}
+#gallery .cell figcaption img {
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+}
+#gallery .cell figcaption img:hover {
+  opacity: 0.7;
+  box-shadow: none;
+}
+#gallery .cell figcaption img:active {
+  opacity: 1;
 }
 footer {
+  display: block;
   clear: both;
   text-align: center;
   letter-spacing: 2px;
@@ -224,23 +274,6 @@ footer {
 }
 #devtext {
   padding: 3.3em 1em;
-}
-.content {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-  line-height: 1.2;
-  max-width: 900px;
-  padding: 0 70px;
-  margin: 0 auto;
-}
-.content h1,
-.content h2,
-.content h3 {
-  font-weight: 500;
-  padding: 0 0 0.3em 0;
-  border-bottom: 1px solid #eee;
-}
-.content p {
-  margin: 0 0 1em 1em;
 }
 @-webkit-keyframes animation {
   0% {
