@@ -50,6 +50,12 @@ nav #user {
 nav #user figure {
   margin: 5px;
 }
+nav #user figure figcaption {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
 nav #user img {
   width: 35px;
   height: 35px;
