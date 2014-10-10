@@ -18,3 +18,8 @@ The Website uses alignment to associate similar or related items next to each ot
 
 # Attributions
 The photos where taken from [pixabay.com](http://pixabay.com/) and are licenced under [CC0 Public Domain](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+
+# Problems
+For liking a photo that is hosted on Facebook one needs the publish_actions. The Facebook [developer docs](https://developers.facebook.com/docs/graph-api/reference/v2.1/object/likes) states: `A user access token with publish_actions permission can be used to publish new likes.`
+
+So I submitted a review for the permission. The response I got from the review team was that I should use the [Like plugin](https://developers.facebook.com/docs/plugins/like-button/). However the like plugin doesn't allow the like to be viewable on the Facebook page's photo. On my next submission I explained this. The response was that they could not reproduce the steps I submitted. The reviewer could not see the like on the timeline. To make it more clear I made a [screencast](http://quick.as/omwai4ew) to help the review team. The response on my 3rd submission: `Since your website is not publishing a post onto a user's timeline, you do not need to submit with the publish_actions permission. Thank you!`
