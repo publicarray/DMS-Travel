@@ -10,14 +10,16 @@ $(document).ready(function() {
           xfbml: true,
           version: 'v2.1',
         });
-        // Process login
+        // Display Content
         loginCallback();
+        displayHeader();
+        getAlbums();
     });
 });
 
 // Function get called every time login/logout button is pressed
 // If user is logout than it displayed alert to login
-// Else call functions to display the website
+// Else call function to display the user
 function loginCallback(){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
@@ -25,12 +27,10 @@ function loginCallback(){
             $('#alertBody').hide();
             $('#alert').delay(1500).fadeOut(2000);
             $('#splash').fadeOut(2000);
-            displayHeader();
             displayMe();
-            getAlbums();
         } else {
             $('#alert').fadeIn(2000);
-            $('#splash').fadeIn(2000);
+            $('#splash').fadeIn(1000);
             $('#alertText').text('Please Login');
             $('#alertBody').show();
         }
@@ -43,7 +43,6 @@ function displayHeader() {
         if (response && !response.error) {
             $('#bg').css('background-image', 'url("'+response.cover.source+'")');
             $('#title').text(response.name);
-            // $('#description').text(response.description);
         }
     });
 }
@@ -122,7 +121,7 @@ function askPermissionToLike(id, j) {
                         console.log('Got access token');
 
                     } else {
-                        // unlikely, means user is not logged in/ not authorized app.
+                        // very unlikely, means user is not logged in/ not authorized app.
                         console.log('User canceled login or did not authorize the app.');
                     }
                 }, {scope: 'publish_actions' });

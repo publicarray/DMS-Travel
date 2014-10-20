@@ -7,17 +7,19 @@ $(document).ready(function() {
     $.getScript('//connect.facebook.net/en_UK/all.js', function(){
         FB.init({
           appId: appId,
-          xfbml: true,
+          xfbml: false,
           version: 'v2.1',
         });
-        // Process login
+        // Display Content
         loginCallback();
+        displayHeader();
+        displayDeveloper();
     });
 });
 
 // Function get called every time login/logout button is pressed
 // If user is logout than it displayed alert to login
-// Else call functions to display the website
+// Else call function to display the user
 function loginCallback(){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
@@ -25,12 +27,10 @@ function loginCallback(){
             $('#alertBody').hide();
             $('#alert').delay(1500).fadeOut(2000);
             $('#splash').fadeOut(2000);
-            displayHeader();
             displayMe();
-            displayDeveloper();
         } else {
             $('#alert').fadeIn(2000);
-            $('#splash').fadeIn(2000);
+            $('#splash').fadeIn(1500);
             $('#alertText').text('Please Login');
             $('#alertBody').show();
         }
@@ -41,7 +41,6 @@ function loginCallback(){
 function displayHeader() {
     FB.api('/'+pageId, 'get', function(response) {
         if (response && !response.error) {
-            // $('#bg'). css('background-image', 'url("'+response.cover.source+'")');
             $('#title').text(response.name);
             $('#description').text(response.description);
         }
@@ -64,7 +63,7 @@ function displayMe() {
 
 // Show the facebook name, profile picture and link of the developer
 function displayDeveloper() {
-    var id = '780653805331955'
+    var id = '780653805331955';
     FB.api('/'+id+'?fields=link,name', 'get', function(response) {
         if (response && !response.error) {
             var developer = response;
@@ -89,14 +88,13 @@ function toggleDropdown() {
 // http://gomakethings.com/javascript-resize-performance/
 var resizeTimer;
 function resizeFunction() {
-    console.log('Checked size');
+    console.log('Checked if window size is smaller than < 760');
     if ($(window).width() < 760) {
         $('#dropdown').hide();
-    } else {
     }
-};
+}
 $(window).resize(function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeFunction, 500);
+    resizeTimer = setTimeout(resizeFunction, 200);
 });
 resizeFunction();

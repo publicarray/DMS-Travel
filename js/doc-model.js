@@ -10,14 +10,14 @@ $(document).ready(function() {
           xfbml: true,
           version: 'v2.1',
         });
-        // Process login
+        // Display Content
         loginCallback();
     });
 });
 
 // Function get called every time login/logout button is pressed
 // If user is logout than it displayed alert to login
-// Else call functions to display the website
+// Else call function to display the user
 function loginCallback(){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
@@ -60,14 +60,13 @@ function toggleDropdown() {
 // http://gomakethings.com/javascript-resize-performance/
 var resizeTimer;
 function resizeFunction() {
-    console.log('Checked size');
+    console.log('Checked if window size is smaller than < 760');
     if ($(window).width() < 760) {
         $('#dropdown').hide();
-    } else {
     }
-};
+}
 $(window).resize(function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeFunction, 500);
+    resizeTimer = setTimeout(resizeFunction, 200);
 });
 resizeFunction();
