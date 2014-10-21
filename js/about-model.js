@@ -7,7 +7,7 @@ $(document).ready(function() {
     $.getScript('//connect.facebook.net/en_UK/all.js', function(){
         FB.init({
           appId: appId,
-          xfbml: false,
+          xfbml: true,
           version: 'v2.1',
         });
         // Display Content
