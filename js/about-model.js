@@ -13,7 +13,6 @@ $(document).ready(function() {
         // Display Content
         loginCallback();
         displayHeader();
-        displayDeveloper();
     });
 });
 
@@ -28,9 +27,10 @@ function loginCallback(){
             $('#alert').delay(1500).fadeOut(2000);
             $('#splash').fadeOut(2000);
             displayMe();
+            displayDeveloper();
         } else {
             $('#alert').fadeIn(2000);
-            $('#splash').fadeIn(1500);
+            $('#splash').fadeIn(1000);
             $('#alertText').text('Please Login');
             $('#alertBody').show();
         }

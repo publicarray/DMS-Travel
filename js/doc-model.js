@@ -28,7 +28,7 @@ function loginCallback(){
             displayMe();
         } else {
             $('#alert').fadeIn(2000);
-            $('#splash').fadeIn(2000);
+            $('#splash').fadeIn(1000);
             $('#alertText').text('Please Login');
             $('#alertBody').show();
         }
