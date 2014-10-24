@@ -15,7 +15,7 @@
         <img id="plane" src="img/plane.png" alt="">
         <div id="alert" style="display:none;">
             <h2 id="alertText"></h2>
-            <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()" style="display:none;"></div>
+            <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="model.loginCallback()" style="display:none;"></div>
         </div>
     </div>
     <div id="header">
@@ -24,8 +24,8 @@
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li id="user" onclick="toggleDropdown()"></li>
-                <li class="fb-login-button" id="dropdown" style="display:none;" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="loginCallback()"></li>
+                <li id="user" onclick="controller.toggleDropdown()"></li>
+                <li class="fb-login-button" id="dropdown" style="display:none;" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="model.loginCallback()"></li>
             </ul>
         </nav>
         <div id="bgOverlay">
@@ -37,7 +37,7 @@
     <div id="bar">
         <div id="order">
             <span>Sort By</span>
-            <select id="sort" onchange="return orderBy(this)">
+            <select id="sort" onchange="return controller.orderBy(this)">
                 <option></option>
                 <option>Likes Ascending</option>
                 <option>Likes Descending</option>
@@ -47,7 +47,7 @@
         </div>
         <div id="search">
             <input id="searchTxt" type="search">
-            <input class="btn" id="searchBtn" type="button" value="Search" onclick="search()">
+            <input class="btn" id="searchBtn" type="button" value="Search" onclick="controller.search()">
         </div>
     </div>
     <div id="gallery"></div>

@@ -1,5 +1,7 @@
 var pageId = '815157038515764';
 var appId = '1480115835608916';
+var controller = {};
+var model = {};
 var img = [];
 // Load the facebook js SDK v2.1 asynchronously
 $(document).ready(function() {
@@ -11,23 +13,23 @@ $(document).ready(function() {
           version: 'v2.1',
         });
         // Display Content
-        loginCallback();
-        displayHeader();
-        getAlbums();
+        model.loginCallback();
+        model.displayHeader();
+        model.getAlbums();
     });
 });
 
 // Function get called every time login/logout button is pressed
 // If user is logout than it displayed alert to login
 // Else call function to display the user
-function loginCallback(){
+model.loginCallback = function (){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             $('#alertText').text('Connected');
             $('#alertBody').hide();
             $('#alert').delay(1500).fadeOut(2000);
             $('#splash').fadeOut(2000);
-            displayMe();
+            model.displayMe();
         } else {
             $('#alert').fadeIn(2000);
             $('#splash').fadeIn(1000);
@@ -35,20 +37,20 @@ function loginCallback(){
             $('#alertBody').show();
         }
     });
-}
+};
 
 // Show the header with information from the facebook page; including name, description and cover image
-function displayHeader() {
+model.displayHeader = function() {
     FB.api('/'+pageId, 'get', function(response) {
         if (response && !response.error) {
             $('#bg').css('background-image', 'url("'+response.cover.source+'")');
             $('#title').text(response.name);
         }
     });
-}
+};
 
 // Show profile picture and name of the login user
-function displayMe() {
+model.displayMe = function () {
     FB.api('/me?fields=name', 'get', function(response) {
         if (response && !response.error) {
             var name = response.name;
@@ -59,11 +61,11 @@ function displayMe() {
             });
         }
     });
-}
+};
 
 // Grab all albums from page. Than get the photos for all albums and push the information to a global img[] array
 // When all albums are processed than call displayPhotos() and likeBtn() functions in home-controller.js
-function getAlbums() {
+model.getAlbums = function () {
     FB.api('/'+pageId+'/albums', function (response) {
         if (response && !response.error) {
             var noAlbums = response.data.length;
@@ -90,17 +92,17 @@ function getAlbums() {
                     }
                     currAlbum++;
                     if (currAlbum === noAlbums) {
-                        displayPhotos(img);
-                        likeBtn(img);
+                        controller.displayPhotos(img);
+                        controller.likeBtn(img);
                     }
                 });
             }
         }
     });
-}
+};
 
 // Returns a function. Grab user's permissions and if needed ask for publish_actions. Than call like() function
-function askPermissionToLike(id, j) {
+model.askPermissionToLike = function (id, j) {
     return function(event) {
         console.log('likeBtn pressed');
         FB.api('/me/permissions', function (response) {
@@ -108,7 +110,7 @@ function askPermissionToLike(id, j) {
             for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].permission === 'publish_actions' && response.data[i].status === 'granted') {
                     console.log('User has required permissions');
-                    like(id, j);
+                    model.like(id, j);
                     allowed = true;
                 }
             }
@@ -117,7 +119,7 @@ function askPermissionToLike(id, j) {
                 console.log('Asking for additional permissions...');
                 FB.login(function (response) {
                     if (response.authResponse) {
-                        like(id, j);
+                        model.like(id, j);
                         console.log('Got access token');
 
                     } else {
@@ -128,12 +130,12 @@ function askPermissionToLike(id, j) {
             }
         });
     };
-}
+};
 
 // Grab user id and compare to the id's of the likes on the photo
 // If match than alert user that the photo was already liked
 // Else like the photo and increase like counter on that image
-function like(id, j) {
+model.like = function (id, j) {
     FB.api('/me?fields=id', function (response) {
         var myId = response.id;
         console.log('Grabbing user ID: ' +myId);
@@ -163,4 +165,4 @@ function like(id, j) {
             }
         });
     });
-}
+};

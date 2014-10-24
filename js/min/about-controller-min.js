@@ -1,0 +1,1 @@
+controller.toggleDropdown=function(){$("#dropdown").toggle()};var resizeTimer;controller.resizeFunction=function(){console.log("Checked if window size is smaller than < 760"),$(window).width()<760&&$("#dropdown").hide()},$(window).resize(function(){clearTimeout(resizeTimer),resizeTimer=setTimeout(resizeFunction,200)}),controller.resizeFunction();
