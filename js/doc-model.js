@@ -21,16 +21,12 @@ $(document).ready(function() {
 model.loginCallback = function (){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
-            $('#alertText').text('Connected');
-            $('#alertBody').hide();
-            $('#alert').delay(1500).fadeOut(2000);
-            $('#splash').fadeOut(2000);
             model.displayMe();
+            $('#fblogin').addClass('dropdown').hide();
+            $('#user').show();
         } else {
-            $('#alert').fadeIn(2000);
-            $('#splash').fadeIn(1000);
-            $('#alertText').text('Please Login');
-            $('#alertBody').show();
+            $('#user').hide();
+            $('#fblogin').removeClass('dropdown').show();
         }
     });
 };

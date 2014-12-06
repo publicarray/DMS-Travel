@@ -34,13 +34,10 @@ nav
     right 0px
     left 0px
     #user
-        display none
         cursor pointer
         font-size 0.7em
         float right
-        width 123px
-        height 64px
-        transition all 250ms ease
+        transition color 250ms ease, background 250ms ease
         figure
             margin 5px
             figcaption
@@ -54,11 +51,13 @@ nav
         &:hover
             background #7092ed
             color #fff
-    #dropdown
+    .dropdown
         position absolute
         right $pad
         top 64px
         background #7092ed
+    #fblogin
+        float right
     ul
         display block
         text-align center
@@ -76,7 +75,7 @@ nav
                 text-decoration none
                 padding 20px 40px
                 height 64px
-                transition all 250ms ease
+                transition color 250ms ease, background 250ms ease
                 &:hover
                     text-decoration none
                     background #7092ed
@@ -261,15 +260,6 @@ blockquote
 @media (min-width 760px)
     nav
         height 64px
-        #user
-            display inline-block
-    #bar
-        #search
-            #searchTxt
-                width 300px
-// tablet
-@media (min-width 632px)
-    nav
         position fixed
         padding 0 $pad
         ul
@@ -279,3 +269,11 @@ blockquote
                     width auto
     .content
         padding 0 $pad
+    #user
+        width 123px
+        height 64px
+        display inline-block
+    #bar
+        #search
+            #searchTxt
+                width 300px

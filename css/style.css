@@ -38,14 +38,11 @@ nav {
   left: 0px;
 }
 nav #user {
-  display: none;
   cursor: pointer;
   font-size: 0.7em;
   float: right;
-  width: 123px;
-  height: 64px;
-  -webkit-transition: all 250ms ease;
-          transition: all 250ms ease;
+  -webkit-transition: color 250ms ease, background 250ms ease;
+          transition: color 250ms ease, background 250ms ease;
 }
 nav #user figure {
   margin: 5px;
@@ -64,11 +61,14 @@ nav #user:hover {
   background: #7092ed;
   color: #fff;
 }
-nav #dropdown {
+nav .dropdown {
   position: absolute;
   right: 70px;
   top: 64px;
   background: #7092ed;
+}
+nav #fblogin {
+  float: right;
 }
 nav ul {
   display: block;
@@ -90,8 +90,8 @@ nav ul li a {
   text-decoration: none;
   padding: 20px 40px;
   height: 64px;
-  -webkit-transition: all 250ms ease;
-          transition: all 250ms ease;
+  -webkit-transition: color 250ms ease, background 250ms ease;
+          transition: color 250ms ease, background 250ms ease;
 }
 nav ul li a:hover {
   text-decoration: none;
@@ -317,16 +317,6 @@ blockquote {
 @media (min-width: 760px) {
   nav {
     height: 64px;
-  }
-  nav #user {
-    display: inline-block;
-  }
-  #bar #search #searchTxt {
-    width: 300px;
-  }
-}
-@media (min-width: 632px) {
-  nav {
     position: fixed;
     padding: 0 70px;
   }
@@ -338,6 +328,14 @@ blockquote {
   }
   .content {
     padding: 0 70px;
+  }
+  #user {
+    width: 123px;
+    height: 64px;
+    display: inline-block;
+  }
+  #bar #search #searchTxt {
+    width: 300px;
   }
 }
 @-webkit-keyframes animation {

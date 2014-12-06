@@ -20,7 +20,12 @@ controller.likeBtn = function(img) {
 
 // Hides & Shows facebook logout button when #user is clicked
 controller.toggleDropdown = function() {
-    $('#dropdown').toggle();
+    $('#fblogin').toggle();
+    if ($(window).width() < 760) {
+        $('#fblogin').removeClass('dropdown');
+    } else {
+        $('#fblogin').addClass('dropdown');
+    }
 };
 
 // When user presses the RETURN key perform search()
@@ -29,21 +34,6 @@ $('input').keypress(function(e) {
         controller.search();
     }
 });
-
-// for responsive webdesign
-// http://gomakethings.com/javascript-resize-performance/
-var resizeTimer;
-controller.resizeFunction = function() {
-    console.log('Checked if window size is smaller than < 760');
-    if ($(window).width() < 760) {
-        $('#dropdown').hide();
-    }
-};
-$(window).resize(function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(controller.resizeFunction, 200);
-});
-controller.resizeFunction();
 
 var searchImg = [];
 // Grab user input from #searchTxt and perform search in img[] array and push the output into searchImg[].

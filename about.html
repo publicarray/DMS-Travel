@@ -10,21 +10,14 @@
     </head>
     <body>
     <div id="fb-root"></div>
-    <div id="splash" style="display:none;">
-        <img id="plane" src="img/plane.png" alt="">
-        <div id="alert" style="display:none;">
-            <h2 id="alertText"></h2>
-            <div id="alertBody" class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="model.loginCallback()" style="display:none;"></div>
-        </div>
-    </div>
     <div id="header">
         <nav>
             <ul>
                 <li><a href="index.html" title="Home">Home</a></li>
                 <li><a href="about.html" title="About">About</a></li>
                 <li><a href="doc.html" title="Documentation">Documentation</a></li>
-                <li id="user" onclick="controller.toggleDropdown()"></li>
-                <li class="fb-login-button" id="dropdown" style="display:none;" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="model.loginCallback()"></li>
+                <li id="user" onclick="controller.toggleDropdown()" style="display:none"></li>
+                <li class="fb-login-button dropdown" id="fblogin" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="public_profile" onlogin="model.loginCallback()" style="display:none"></li>
             </ul>
         </nav>
         <div id="bgOverlay">
@@ -45,6 +38,18 @@
         <p>Website design by Sebastian Schmidt &nbsp;|&nbsp; Copyright 2014 Sebastian Schmidt &nbsp;|&nbsp; <a href="privacypolicy.html">Privacy Policy</a></p>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
     <script src="js/min/about-model-min.js"></script>
+    <script type="text/javascript">
+    // Hides & Shows facebook logout button when #user is clicked
+    controller.toggleDropdown = function() {
+        $('#fblogin').toggle();
+        if ($(window).width() < 760) {
+            $('#fblogin').removeClass('dropdown');
+        } else {
+            $('#fblogin').addClass('dropdown');
+        }
+    };
+    </script>
     </body>
 </html>
