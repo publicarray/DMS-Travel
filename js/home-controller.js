@@ -76,7 +76,7 @@ controller.orderBy = function (sort){
                     return a.likes - b.likes;
                 }
             });
-            controller.displayPhotos(sortImg)
+            controller.displayPhotos(sortImg);
             controller.likeBtn(sortImg);
             break;
         // Sort orderByImg[] array by likes descending and call displayPhotos()
@@ -93,7 +93,7 @@ controller.orderBy = function (sort){
                     return b.likes - a.likes;
                 }
             });
-            controller.displayPhotos(sortImg)
+            controller.displayPhotos(sortImg);
             controller.likeBtn(sortImg);
             break;
         // Sort orderByImg[] array by title ascending and call displayPhotos()
@@ -109,7 +109,7 @@ controller.orderBy = function (sort){
                     return b.likes - a.likes;
                 }
             });
-            controller.displayPhotos(sortImg)
+            controller.displayPhotos(sortImg);
             controller.likeBtn(sortImg);
             break;
         // Sort orderByImg[] array by title descending and call displayPhotos()
@@ -125,7 +125,7 @@ controller.orderBy = function (sort){
                     return a.likes - b.likes;
                 }
             });
-            controller.displayPhotos(sortImg)
+            controller.displayPhotos(sortImg);
             controller.likeBtn(sortImg);
             break;
     }
