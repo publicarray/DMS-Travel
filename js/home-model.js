@@ -3,7 +3,7 @@ var appId = '1480115835608916';
 var controller = {};
 var model = {};
 var img = [];
-// Load the facebook js SDK v2.1 asynchronously
+// Load the facebook js SDK v2.4 asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
     $.getScript('//connect.facebook.net/en_US/sdk.js', function(){

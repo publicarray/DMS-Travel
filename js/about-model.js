@@ -2,14 +2,14 @@ var pageId = '815157038515764';
 var appId = '1480115835608916';
 var controller = {};
 var model = {};
-// Load the facebook js SDK v2.1 asynchronously
+// Load the facebook js SDK v2.4 asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
-    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+    $.getScript('//connect.facebook.net/en_UK/sdk.js', function(){
         FB.init({
           appId: appId,
           xfbml: true,
-          version: 'v2.1',
+          version: 'v2.4',
         });
         // Display Content
         model.loginCallback();
@@ -36,7 +36,7 @@ model.loginCallback = function (){
 
 // Show the header with information from the facebook page; including name, description and cover image
 model.displayHeader = function () {
-    FB.api('/'+pageId, 'get', function(response) {
+    FB.api('/'+pageId+'?fields=name,description', 'get', function(response) {
         if (response && !response.error) {
             $('#title').text(response.name);
             $('#description').text(response.description);
