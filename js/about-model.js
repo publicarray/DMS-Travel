@@ -13,7 +13,6 @@ $(document).ready(function() {
         });
         // Display Content
         model.loginCallback();
-        model.displayHeader();
     });
 });
 
@@ -31,6 +30,7 @@ model.loginCallback = function (){
             $('#user').hide();
             $('#fblogin').removeClass('dropdown').show();
         }
+        model.displayHeader();
     });
 };
 
@@ -40,6 +40,8 @@ model.displayHeader = function () {
         if (response && !response.error) {
             $('#title').text(response.name);
             $('#description').text(response.description);
+        } else {
+            console.error(response.error.message);
         }
     });
 };
@@ -52,6 +54,8 @@ model.displayMe = function () {
             FB.api('/me/picture?redirect=false&type=square', 'get', function(response) {
                 if (response && !response.error) {
                     $('#user').html('<figure><img src="'+response.data.url+'"><figcaption>'+name+'</figcaption></figure>');
+                } else {
+                    console.error(response.error.message);
                 }
             });
         }
@@ -68,8 +72,12 @@ model.displayDeveloper = function () {
                 if (response && !response.error) {
                     var htmlString = '<a href="'+developer.link+'"><h2>'+developer.name+'</h2></a><a href="'+developer.link+'"><img src="'+response.data.url+'" alt="'+developer.name+'"></a><h3>App Developer</h3>';
                     $('#developer').html(htmlString);
+                } else {
+                    console.error(response.error.message);
                 }
             });
+        } else {
+            console.error(response.error.message);
         }
     });
 };
