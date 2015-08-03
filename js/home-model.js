@@ -77,7 +77,7 @@ model.getAlbums = function () {
             var noAlbums = response.data.length;
             var currAlbum = 0;
             for (var i = 0; i < response.data.length; i++) {
-                FB.api('/' + response.data[i].id + '/photos?fields=images', function (response){
+                FB.api('/' + response.data[i].id + '/photos?fields=images,name,likes', function (response){
                     if (response && !response.error) {
                         console.log(response);
                         var data = response.data;
