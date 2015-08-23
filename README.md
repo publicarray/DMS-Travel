@@ -1,7 +1,7 @@
 DMS-Travel
 ==========
 
-**Note: Due to Facebook's API update it is no longer possale to get public information without an access token (Login).**
+**Note: Due to Facebook's API update it is no longer possible to get public information without an access token (Login).**
 
 The intention of this repository is to demonstrate the use of Facebook's API and jQuery.
 
