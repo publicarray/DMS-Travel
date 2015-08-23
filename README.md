@@ -1,8 +1,9 @@
 DMS-Travel
 ==========
 
-** Note: Due to Facebook's API update it is no longer possale to get public information without an access token (Login).**
-The intention of this repository is to demonstrate the use of Facebook's API v2.1 and jQuery.
+**Note: Due to Facebook's API update it is no longer possale to get public information without an access token (Login).**
+
+The intention of this repository is to demonstrate the use of Facebook's API and jQuery.
 
 DMS Travel is a mock travel/holiday company. We provide travel-related services such as tour arrangement, airline arrangement, transfer, hotel accommodation, visa processing assistance etc. As travel partners, we aim to address all the travel needs and requirements of our clients from the start until the end of their journey. This will be our guiding principle - a dedicated service in giving travelers a worthy travel experience.
 
