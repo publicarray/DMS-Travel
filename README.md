@@ -3,6 +3,9 @@ DMS-Travel
 
 **Note: Due to Facebook's API update it is no longer possible to get public information without an access token (Login).**
 
+**Another update from Facebook:**
+>This account has enhanced targeting data set to off. We are removing the opt out setting, effective October 15. Note that data received through the use of our pixel and mobile app events has not been used for targeting to date, and we do not have plans to do so beyond small-scale tests. If we start using this data to improve ad targeting, we will ensure that this data makes up only a small percentage of the inputs into each targeting segment. You can also remove the Facebook pixel, app events and Social Plugins from your websites and apps before the effective date.
+
 The intention of this repository is to demonstrate the use of Facebook's API and jQuery.
 
 DMS Travel is a mock travel/holiday company. We provide travel-related services such as tour arrangement, airline arrangement, transfer, hotel accommodation, visa processing assistance etc. As travel partners, we aim to address all the travel needs and requirements of our clients from the start until the end of their journey. This will be our guiding principle - a dedicated service in giving travelers a worthy travel experience.
