@@ -1,3 +1,4 @@
+/*globals FB:false */
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var controller = {};
@@ -9,7 +10,7 @@ $(document).ready(function() {
         FB.init({
           appId: appId,
           xfbml: true,
-          version: 'v2.4',
+          version: 'v2.8',
         });
         // Display Content
         model.loginCallback();
@@ -51,7 +52,7 @@ model.displayMe = function () {
     FB.api('/me?fields=name', 'get', function(response) {
         if (response && !response.error) {
             var name = response.name;
-            FB.api('/me/picture?redirect=false&type=square', 'get', function(response) {
+            FB.api('/me/picture?redirect=0&type=square', 'get', function(response) {
                 if (response && !response.error) {
                     $('#user').html('<figure><img src="'+response.data.url+'"><figcaption>'+name+'</figcaption></figure>');
                 } else {
@@ -64,13 +65,15 @@ model.displayMe = function () {
 
 // Show the facebook name, profile picture and link of the developer
 model.displayDeveloper = function () {
-    var id = '780653805331955';
+    var id = '100001620276051';
     FB.api('/'+id+'?fields=link,name', 'get', function(response) {
         if (response && !response.error) {
             var developer = response;
-            FB.api('/'+id+'/picture?redirect=false&type=large', 'get', function(response) {
+            FB.api('/'+id+'/picture?redirect=0&type=normal', 'get', function(response) {
                 if (response && !response.error) {
-                    var htmlString = '<a href="'+developer.link+'"><h2>'+developer.name+'</h2></a><a href="'+developer.link+'"><img src="'+response.data.url+'" alt="'+developer.name+'"></a><h3>App Developer</h3>';
+                    var htmlDevNameString = '<a href="'+developer.link+'"><h2>'+developer.name+'</h2></a>'
+                    var htmlString = '<a href="'+developer.link+'"><img src="'+response.data.url+'" alt="'+developer.name+'"></a>';
+                    $('#devName').html(htmlDevNameString);
                     $('#developer').html(htmlString);
                 } else {
                     console.error(response.error.message);

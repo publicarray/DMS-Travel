@@ -1,11 +1,12 @@
+/*globals controller:false */
 // Display the contents of img[] array and adding HTML tags
 controller.displayPhotos = function (img) {
     var htmlStr = '';
     // console.log(img);
     for (var i = 0; i < img.length; i++) {
-        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '">
-        <img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption><span class="left">' + img[i].title + '</span>
-        <span class="right"><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></span></figcaption></figure>';
+        htmlStr += '<figure class="cell"><a href="' + img[i].url + '" data-lightbox="gallary" data-title="' + img[i].title + '">' +
+        '<img src="' + img[i].source + '" alt="' + img[i].title + '"></a><figcaption><span class="left">' + img[i].title + '</span>' +
+        '<span class="right"><img id="' + i + '" src="img/fbl.png" title="Like"><span>' + img[i].likes + '</span></span></figcaption></figure>';
     }
     $('#gallery').html(htmlStr);
 };

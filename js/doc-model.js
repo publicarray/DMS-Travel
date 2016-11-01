@@ -1,14 +1,15 @@
+/*globals FB:false */
 var appId = '1480115835608916';
 var controller = {};
 var model = {};
 // Load the facebook js SDK v2.1 asynchronously
 $(document).ready(function() {
     $.ajaxSetup({ cache: true });
-    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+    $.getScript('//connect.facebook.net/en_UK/sdk.js', function(){
         FB.init({
           appId: appId,
           xfbml: true,
-          version: 'v2.1',
+          version: 'v2.8',
         });
         // Display Content
         model.loginCallback();

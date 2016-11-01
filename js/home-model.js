@@ -1,3 +1,4 @@
+/*globals FB:false */
 var pageId = '815157038515764';
 var appId = '1480115835608916';
 var controller = {};
@@ -10,10 +11,10 @@ $(document).ready(function() {
         FB.init({
           appId: appId,
           xfbml: true,
-          version: 'v2.4',
+          version: 'v2.8',
         });
-        // Display Content
         model.loginCallback();
+        $('#splash').delay(1500).fadeOut(2000);
     });
 });
 
@@ -26,13 +27,12 @@ model.loginCallback = function (){
             model.displayMe();
             $('#fblogin').addClass('dropdown').hide();
             $('#user').show();
+            model.displayHeader();
+            model.getAlbums();
         } else {
             $('#user').hide();
             $('#fblogin').removeClass('dropdown').show();
         }
-        $('#splash').delay(1500).fadeOut(2000);
-        model.displayHeader();
-        model.getAlbums();
     });
 };
 
